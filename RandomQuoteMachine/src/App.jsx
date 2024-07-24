@@ -35,6 +35,7 @@ function App() {
 
     useEffect(() => {
         randomQuote();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [quoteList]);
 
     if (!quote) return <div>Loading...</div>;
