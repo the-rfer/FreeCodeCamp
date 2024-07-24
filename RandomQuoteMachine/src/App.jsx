@@ -31,6 +31,9 @@ function App() {
         getQuotes().then((quotes) => {
             setQuoteList(quotes);
         });
+        console.log(
+            'Find the code repo at: https://github.com/the-rfer/FreeCodeCamp/tree/main/RandomQuoteMachine'
+        );
     }, []);
 
     useEffect(() => {
