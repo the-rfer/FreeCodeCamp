@@ -36,17 +36,41 @@ function App() {
     }, [markdown]);
     return (
         <>
-            {/* When my markdown previewer first loads, the default text in the #editor field should contain valid markdown that represents at least one of each of the following elements: a heading element (H1 size), a sub heading element (H2 size), a link, inline code, a code block, a list item, a blockquote, an image, and bolded text. */}
-
-            <div id='editor-container'>
-                <textarea
-                    id='editor'
-                    value={markdown}
-                    onChange={handleChange}
-                ></textarea>
+            <div id='main'>
+                <div id='editor-container'>
+                    <h2>Markdown Editor</h2>
+                    <textarea
+                        id='editor'
+                        value={markdown}
+                        onChange={handleChange}
+                    ></textarea>
+                </div>
+                <div id='preview-container'>
+                    <div id='preview'></div>
+                </div>
             </div>
-            <div id='preview-container'>
-                <div id='preview'></div>
+
+            <div className='background'>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </>
     );
