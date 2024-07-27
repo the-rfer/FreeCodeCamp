@@ -65,8 +65,6 @@ function App() {
         <>
             <div id='calculator'>
                 <div id='display'>
-                    {result}
-                    <br />
                     {result !== null ? result : currentValue}
                 </div>
                 <div id='button-group'>
