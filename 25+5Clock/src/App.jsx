@@ -13,7 +13,12 @@ function App() {
     useEffect(() => {
         if (isActive) {
             intervalRef.current = setInterval(() => {
-                setTime((prevTime) => prevTime - 1);
+                setTime((prevTime) => {
+                    if (prevTime < -1) {
+                        return Math.abs(prevTime) - 1;
+                    }
+                    return prevTime - 1;
+                });
             }, 1000);
         } else if (!isActive && intervalRef.current) {
             clearInterval(intervalRef.current);
@@ -23,7 +28,7 @@ function App() {
     }, [isActive]);
 
     useEffect(() => {
-        if (time === 0) {
+        if (time === -1) {
             audio.play();
             setIsSessionRunning((prev) => !prev);
         }
@@ -48,7 +53,8 @@ function App() {
         setTime(25 * 60);
         setTimerValue(25);
         setBreakValue(5);
-        // included:
+        audio.pause();
+        audio.currentTime = 0;
         if (intervalRef.current) {
             clearInterval(intervalRef.current);
         }
@@ -95,7 +101,7 @@ function App() {
                 break decrement
             </div>
             <div
-                id='break-incremenet'
+                id='break-increment'
                 onClick={() => handleUpdate('break', 'increment')}
             >
                 break increment
