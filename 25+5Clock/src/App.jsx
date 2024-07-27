@@ -5,15 +5,15 @@ function App() {
     const [breakValue, setBreakValue] = useState(5);
     const [time, setTime] = useState(25 * 60);
     const [isActive, setIsActive] = useState(false);
-    const [isSessionRunning, setIsSessionRunning] = useState(true); // is session or break running false = break, true = session
+    const [isSessionRunning, setIsSessionRunning] = useState(true); // false = break, true = session
     const intervalRef = useRef(null);
 
-    useEffect(() => {
-        // TODO: edit this effect so when 0 is reached and isSessionRunning is true, it sets isSessionRunning to false and changes the time to breakValue.
+    const audio = document.getElementById('beep');
 
+    useEffect(() => {
         if (isActive) {
             intervalRef.current = setInterval(() => {
-                setTime((prevTime) => (prevTime > 0 ? prevTime - 1 : 0));
+                setTime((prevTime) => prevTime - 1);
             }, 1000);
         } else if (!isActive && intervalRef.current) {
             clearInterval(intervalRef.current);
@@ -23,22 +23,35 @@ function App() {
     }, [isActive]);
 
     useEffect(() => {
+        if (time === 0) {
+            audio.play();
+            setIsSessionRunning((prev) => !prev);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [time]);
+
+    useEffect(() => {
         if (isSessionRunning) {
             setTime(timerValue * 60);
         } else {
             setTime(breakValue * 60);
         }
-    }, [timerValue, breakValue]);
+    }, [timerValue, breakValue, isSessionRunning]);
 
     const handleStartPause = () => {
-        setIsActive(!isActive);
+        setIsActive((prev) => !prev);
     };
 
     const handleReset = () => {
+        setIsSessionRunning(true);
         setIsActive(false);
         setTime(25 * 60);
         setTimerValue(25);
         setBreakValue(5);
+        // included:
+        if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+        }
     };
 
     const formatTime = (time) => {
