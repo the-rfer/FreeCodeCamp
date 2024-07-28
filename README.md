@@ -1,7 +1,5 @@
 # Free Code Camp Projects
 
-=======================
-
 All projects completed by me and deployed on render.com in order to submit a live preview.
 
 You can find the live projects following the links bellow:
