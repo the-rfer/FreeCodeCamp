@@ -4,7 +4,7 @@ All projects completed by me and deployed on render.com in order to submit a liv
 
 You can find the live projects following the links bellow:
 
-| Description            | Link                                           |
+| Title                  | Link                                           |
 | :--------------------- | :--------------------------------------------- |
 | 25+5 Clock:            | https://two5clock.onrender.com                 |
 | Drum Machine:          | https://freecodecamp-8yyl.onrender.com         |
